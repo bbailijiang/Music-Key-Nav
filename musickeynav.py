@@ -4,11 +4,13 @@ INT_MAX = 40960
 
 G = nx.Graph() # undirected graph, might be directed later
 
+# IDs: 0 to 11
 all_major_keys = [{"key": "C major"}, {"key": "G major"}, {"key": "D major"}, 
                   {"key": "A major"}, {"key": "E major"}, {"key": "B major"},
                   {"key": "F#/Gb major"}, {"key": "C#/Db major"}, {"key": "Ab major"},
                   {"key": "Eb major"}, {"key": "Bb major"}, {"key": "F major"}]
 
+# IDs: 12 to 23
 all_minor_keys = [{"key": "A minor"}, {"key": "E minor"}, {"key": "B minor"},
                   {"key": "F# minor"}, {"key": "C# minor"}, {"key": "G#/Ab minor"},
                   {"key": "D#/Eb minor"}, {"key": "Bb minor"}, {"key": "F minor"},
@@ -128,7 +130,13 @@ def find_path(graph, start, end, length):
     return best_weight, best_path
 
 for i in range(1, 7):
-    (weight, path) = find_path(G, 0, 19, i)
+    # upper bound is 7 right now, any higher and run time is excruciatingly long
+
+    (weight, path) = find_path(G, 0, 17, i) # CHANGE THIS FOR CUSTOM
+    # Ex: 0 is C Major, 17 is G# Minor
+
+
+    print(f'Path of length {i} ---- total weight = {weight}')
     for item in path:
         print(f'{all_keys[item]["key"]} -->')
-    print("---------------------")
+    print("---------------------------------------------------------")
